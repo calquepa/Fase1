@@ -13,7 +13,7 @@ class CardLocalDatasource implements Exception{
   CardLocalDatasource._constructor();
   
 
-  // [Language]
+  // [Card]
   Future<List<CardEntity>> getAllCards() async {
     List<CardEntity> cardsList = await CardLocalDatabase().cardDatabase.selectCards();
     return cardsList;

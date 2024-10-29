@@ -2,36 +2,38 @@ import 'package:phase01/core/entities/card_entity.dart';
 
 class CardDatabaseMapping {
   
-  Map<String, dynamic> convertLanguageToMap(CardEntity language) {
-    Map<String, dynamic> languageRow = <String, dynamic> 
+  Map<String, dynamic> convertCardToMap(CardEntity card) {
+    Map<String, dynamic> cardRow = <String, dynamic> 
     {
-      "key": language.key,
-      "value": language.value,
-      "enabled": language.enabled == true ? 1 : 0,
+      "id": card.id,
+      "key": card.key,
+      "value": card.value,
+      "enabled": card.enabled == true ? 1 : 0,
     };
 
-    return languageRow;
+    return cardRow;
   }
 
-  CardEntity convertMapToCardEntity(Map<String, dynamic> language) {
-    CardEntity languageObject = CardEntity(
-      enabled: language["enabled"] == 0 ? false : true,
-      key: language["key"],
-      value: language["value"],
+  CardEntity convertMapToCardEntity(Map<String, dynamic> card) {
+    CardEntity cardObject = CardEntity(
+      id: card["id"].toString(),
+      key: card["key"],
+      value: card["value"],
+      enabled: card["enabled"] == 0 ? false : true,
     );
 
-    return languageObject;
+    return cardObject;
   }
 
-  List<CardEntity> convertMapListToLanguages(List<Map<String, dynamic>> languagesInDB) {
-    List<CardEntity> languages = [];
+  List<CardEntity> convertMapListToCards(List<Map<String, dynamic>> cardsInDB) {
+    List<CardEntity> cards = [];
 
-    for (var languageInDB in languagesInDB) {
-      if(languageInDB.isNotEmpty) {
-        languages.add(convertMapToCardEntity(languageInDB));
+    for (var cardInDB in cardsInDB) {
+      if(cardInDB.isNotEmpty) {
+        cards.add(convertMapToCardEntity(cardInDB));
       }
     }
 
-    return languages;
+    return cards;
   }
 }

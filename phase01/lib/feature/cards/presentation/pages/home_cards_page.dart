@@ -23,7 +23,7 @@ class _HomeCardsPageState extends State<HomeCardsPage> {
     context.read<CardBloc>().add(DoSetCardInitial(context: context));
 
     super.initState();
-    Future.delayed(const Duration(milliseconds: 800), () {
+    Future.delayed(const Duration(seconds: 2), () {
 
     // Here you can write your code
 

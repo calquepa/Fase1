@@ -83,7 +83,7 @@ class CardDatabase extends DatabaseBuilderAbstract {
   // [Card]
   Future<int> insertCard(CardEntity card) async {
     if(isStoreOpened){
-      Map<String, dynamic> cardRow = CardDatabaseMapping().convertLanguageToMap(card);
+      Map<String, dynamic> cardRow = CardDatabaseMapping().convertCardToMap(card);
       return await _dbCard.insert(CardDatabaseModel.table, cardRow);
     }
     return 0;
@@ -91,13 +91,13 @@ class CardDatabase extends DatabaseBuilderAbstract {
 
   Future<int> updateCard(CardEntity card) async {
     if(isStoreOpened){
-      Map<String, dynamic> mapToUpdate = CardDatabaseMapping().convertLanguageToMap(card);
-      String key = mapToUpdate[CardDatabaseModel.columnKey];
+      Map<String, dynamic> mapToUpdate = CardDatabaseMapping().convertCardToMap(card);
+      String key = mapToUpdate[CardDatabaseModel.columnId];
       
       return await _dbCard.update(
         CardDatabaseModel.table,
         mapToUpdate,
-        where: '${CardDatabaseModel.columnKey} = ?',
+        where: '${CardDatabaseModel.columnId} = ?',
         whereArgs: [key],
       );
     }
@@ -119,7 +119,7 @@ class CardDatabase extends DatabaseBuilderAbstract {
       List<CardEntity> cards = [];
 
       List<Map<String, dynamic>> cardsInDB = await _dbCard.query(CardDatabaseModel.table);
-      cards = CardDatabaseMapping().convertMapListToLanguages(cardsInDB);
+      cards = CardDatabaseMapping().convertMapListToCards(cardsInDB);
 
       return cards;
     }
@@ -130,10 +130,10 @@ class CardDatabase extends DatabaseBuilderAbstract {
 
   Future<int> deleteCard(CardEntity card) async {
     if(isStoreOpened){
-      Map<String, dynamic> mapToUpdate = CardDatabaseMapping().convertLanguageToMap(card);
-      String key = mapToUpdate[CardDatabaseModel.columnKey];
+      Map<String, dynamic> mapToUpdate = CardDatabaseMapping().convertCardToMap(card);
+      String key = mapToUpdate[CardDatabaseModel.columnId];
       
-      return await _dbCard.delete(CardDatabaseModel.table, where: '${CardDatabaseModel.columnKey} = ?',
+      return await _dbCard.delete(CardDatabaseModel.table, where: '${CardDatabaseModel.columnId} = ?',
         whereArgs: [key],);
     }
     return 0;

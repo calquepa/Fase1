@@ -21,4 +21,8 @@ class CardFunctions {
 
     Navigator.pushNamed(context, Routes.homeRoute);
   }
+
+  String generateId(){
+    return DateTime.now().millisecondsSinceEpoch.toString();
+  }
 }

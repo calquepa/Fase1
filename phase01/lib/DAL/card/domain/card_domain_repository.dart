@@ -4,7 +4,7 @@ import 'package:phase01/DAL/card/database/card_local_database.dart';
 
 class CardDomainRepository {
 
-  // [Language]
+  // [Card]
   Future<List<CardEntity>> getAllCards() async {
     List<CardEntity> cards = [];
 

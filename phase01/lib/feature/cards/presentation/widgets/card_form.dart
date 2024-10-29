@@ -40,9 +40,16 @@ class _CardForm extends State<CardForm> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
+                child: 
+                  Text(parameterCard != null ? parameterCard.id : '',
+                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+              ),
+              const SizedBox(height: 15.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   initialValue: parameterCard != null ? parameterCard.key : '',
-                  enabled: parameterCard != null ? false : true,
                   decoration: const InputDecoration(
                     labelText: 'Llave',
                     hintText: 'Nombre describe campo',
@@ -94,6 +101,7 @@ class _CardForm extends State<CardForm> {
                         const SnackBar(content: Text('Processing Data')),
                       );
                       CardEntity card = CardEntity(
+                        id: parameterCard != null ? parameterCard.id : CardFunctions().generateId(),
                         key: _key,
                         value: _value,
                         enabled: true,

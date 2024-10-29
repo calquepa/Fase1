@@ -10,7 +10,7 @@ class CardBloc extends Bloc<CardEvent, CardState> {
   // [Properties]
   
   // :Cards:
-  static List<CardEntity> readBaseCards = [CardEntity(key: '', value: '', enabled: true)];
+  static List<CardEntity> readBaseCards = [CardEntity(id: '', key: '', value: '', enabled: true)];
   static double currentPosition = 0;
   static DateTime lastRefresh = DateTime.now();
   
@@ -110,7 +110,7 @@ class CardBloc extends Bloc<CardEvent, CardState> {
   // [Databases]
   Future<void> _initStores() async {
 
-    // [Account Language WindowPreference]
+    // [Card]
     await CardDomainRepository().initDatabases();
   }
 }

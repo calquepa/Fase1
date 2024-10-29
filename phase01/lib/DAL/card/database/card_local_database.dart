@@ -8,7 +8,7 @@ class CardLocalDatabase {
 
   // [Methods]
   Future<void> initDatabases() async {    
-    // [Language]
+    // [Card]
     await initCardDatabase();
 
     if(cardDatabase.isStoreOpened == false) {      
@@ -19,7 +19,7 @@ class CardLocalDatabase {
   }
 
   Future<void> initCardDatabase() async {
-    // Language
+    // Card
     DatabaseDirector director = DatabaseDirector();
     await director.constructStore(cardDatabase);
   }
